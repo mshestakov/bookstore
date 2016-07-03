@@ -1,0 +1,56 @@
+<form name="searchForm">
+    <div class="input-group m20-0">
+        <input type="search" ng-model="query" class="form-control" placeholder="Search for book...">
+    </div>
+</form>
+<div ng-show="list.length">
+    <table class="table">
+        <tr>
+            <th>Title</th>
+            <th ng-click="sortGrid('author')" class="pointer {{sort.order == 'author' ? sort.dir : ''}}">Author
+                <span class="pull-right glyphicon glyphicon glyphicon-menu-up" aria-hidden="true"></span>
+                <span class="pull-right glyphicon glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+            </th>
+            <th ng-click="sortGrid('book_rating')" class="pointer {{sort.order == 'book_rating' ? sort.dir : ''}}">Book Rating
+                <span class="pull-right glyphicon glyphicon glyphicon-menu-up" aria-hidden="true"></span>
+                <span class="pull-right glyphicon glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+            </th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="book in list | filter:query | orderBy:sort.order:sort.reverse track by $index">
+            <td class="col-sm-6"><a ng-href="#/book/{{book.id}}">{{book.title}}</a></td>
+            <td class="col-sm-3">{{book.author}}</td>
+            <td class="col-sm-2">{{book.book_rating}}</td>
+            <td class="col-sm-1"><span class="glyphicon glyphicon-search pointer" aria-hidden="true" data-toggle="modal" data-target="#previewModal" ng-click="preview(book)"></span></td>
+        </tr>
+    </table>
+    <!-- Modal -->
+    <div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object" ng-src="{{book.image}}" alt="{{book.title}}">
+                        </div>
+                        <div class="media-body">
+                            <h4><a onclick="$('#previewModal').modal('hide')" ng-href="#/book/{{book.id}}">{{book.title}}</a></h4>
+                            <p>by {{book.author}}</p>
+                            <p>{{book.summary}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div ng-show="!list.length && query && searchForm.$pristine">
+    <p>Not found in library</p>
+</div>

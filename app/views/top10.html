@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+    <div class="panel-heading text-center">
+        <h2>Best 10 books and authors</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Book's rating</div>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="book in books">
+                    <a ng-href="#/book/{{book.id}}">{{book.title}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Author's rating</div>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="author in authors">
+                    <a ng-href="#/search?query={{author}}">{{author}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
