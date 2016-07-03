@@ -15,9 +15,9 @@ angular.module('bookstoreApp')
             summary: '',
             year: 2016
         };
-        
+
         $scope.addBook = function () {
-            $http.post('/api/book', $scope.book).then(function() {
+            $http.post('/api/book', $scope.book).then(function () {
                 $location.url('/search');
             });
         };
