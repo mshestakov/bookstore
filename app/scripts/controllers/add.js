@@ -18,7 +18,7 @@ angular.module('bookstoreApp')
 
         $scope.addBook = function () {
             $http.post('/api/book', $scope.book).then(function () {
-                $location.url('/search');
+                $location.url('/search?query=' + $scope.book.title);
             });
         };
     });

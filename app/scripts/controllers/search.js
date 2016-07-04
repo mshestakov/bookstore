@@ -9,8 +9,6 @@
  */
 angular.module('bookstoreApp')
     .controller('SearchCtrl', function ($scope, $location, list) {
-        $scope.query = $location.search().query;
-
         $scope.sort = {
             order: 'book_rating',
             reverse: true,

@@ -344,7 +344,7 @@ angular.module('mock', ['ngMockE2E'])
 
         $httpBackend.whenPOST('/api/book').respond(function (method, url, data, headers, params) {
             data = angular.fromJson(data);
-            angular.merge(data, {book_rating: 5, author_rating: 5});
+            angular.merge(data, {book_rating: 5, author_rating: 5, id: booksLibrary.length + 1});
             booksLibrary.push(angular.fromJson(data));
             return [200, data];
         });
